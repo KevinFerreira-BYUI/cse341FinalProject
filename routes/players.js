@@ -3,7 +3,7 @@ const playersController = require("../controllers/players");
 
 // Get 
 router.get("/", playersController.getAllPlayers);
-//router.get("/:id");
+router.get("/:id", playersController.getPlayerById);
 
 
 
