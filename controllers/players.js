@@ -90,11 +90,12 @@ const updatePlayer = async (req, res, next) => {
 const deletePLayer = async (req, res, next) => {
     try{
         const playerId = req.params.id;
-        // if(!playerId){
-        //     return next(createError(400, "Invalid ID"));
-        // }
-
         const playerName = await playersModel.findById(playerId)
+        
+        if(!playerName){
+            return next(createError(400, "Invalid ID"));
+        }
+
         const player = await playersModel.findByIdAndDelete(playerId);
 
         res.json({

@@ -1,6 +1,7 @@
 // Requiring validate schemas
 const {
-    playerSchema
+    playerSchema,
+    teamsSchema
 } = require("../validator/ValSchemas")
 
 
@@ -22,9 +23,10 @@ const validatorMiddleware = (schema) => {
 
 // Validators
 const validadePlayer = validatorMiddleware(playerSchema);
-
+const validadeTeam = validatorMiddleware(teamsSchema);
 
 
 module.exports = {
-    validadePlayer
+    validadePlayer,
+    validadeTeam
 }
