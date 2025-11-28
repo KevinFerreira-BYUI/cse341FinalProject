@@ -1,11 +1,17 @@
+// Requiring validate schemas
+const {
+    playerSchema
+} = require("../validator/ValSchemas")
 
-const validator = (schema) => {
+
+// Validador Middlware
+const validatorMiddleware = (schema) => {
     return (req, res, next) => {
-        const {err, value} = schema.validate(req.body);
+        const {error, value} = schema.validate(req.body);
 
-        if(err){
+        if(error){
             return res.status(400).json({
-                message: err.details[0].message
+                message: error.details[0].message
             });
         }
 
@@ -13,3 +19,12 @@ const validator = (schema) => {
         next();
     };
 };
+
+// Validators
+const validadePlayer = validatorMiddleware(playerSchema);
+
+
+
+module.exports = {
+    validadePlayer
+}
