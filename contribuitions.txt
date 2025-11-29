@@ -1,0 +1,8 @@
+
+Kevin contributed on building:
+    - player Routes and Controller
+    - teams Routes ans Controller
+    - building /api-docs correctly to works on deployed render website
+    - building errors middleware and handdlers on controllers
+
+    is this!! :)
