@@ -9,7 +9,7 @@ const doc = {
         description: "A Api to help scouts to the football players"
     },
 
-    host: env === "production" ? "localhost:8080" : "localhost:8080",
+    host: env === "production" ? "cse341finalproject-sfnr.onrender.com" : "localhost:8080",
     schemes: env === "production" ? ["https"] : ["http"],
     basepath: "/"  
 };
