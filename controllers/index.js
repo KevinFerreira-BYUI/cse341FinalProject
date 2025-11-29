@@ -12,9 +12,10 @@ const sendIndex = (req, res, next) => {
             </div>
             
             <div>
+                <p><a href="/api-docs">Api Docs here</p>
                 <ul>
-                    <li><a href="#">1</li>
-                    <li><a href="#">2</li>
+                    <li><a href="/players">Players Route</li>
+                    <li><a href="/teams">Teams Route        </li>
                     <li><a href="#">3</li>
                     <li><a href="#">4</li>
                 </ul>
