@@ -2,13 +2,11 @@ const playersModel = require("../models/players");
 const createError = require("http-errors");
 const {playerAddedMsg, playerUpdateMsg, playerDelMsg} = require("../utils/message");
 
+// Get players controllers
 const getAllPlayers = async (req, res, next) => {
+    //#swagger.tags=['players']
     try{
         const players = await playersModel.find();
-
-        if(!players){
-            return next(createError(500, "Impossible get all players from data base."));
-        }
 
         res.json(players);    
     } catch(err){
@@ -17,6 +15,7 @@ const getAllPlayers = async (req, res, next) => {
 };
 
 const getPlayerById = async (req, res, next) => {
+    //#swagger.tags=['players']
     try{
         const playerId = req.params.id;
         const player = await playersModel.findById(playerId);
@@ -31,7 +30,9 @@ const getPlayerById = async (req, res, next) => {
     }
 };
 
+// Post players controllers
 const addPlater = async (req, res, next) => {
+    //#swagger.tags=['players']
     const playerInfo = {
         name: req.body.name,
         age: req.body.age,
@@ -56,7 +57,9 @@ const addPlater = async (req, res, next) => {
     }
 };
 
+// Put players controllers
 const updatePlayer = async (req, res, next) => {
+    //#swagger.tags=['players']
     const playerInfo = {
         name: req.body.name,
         age: req.body.age,
@@ -76,7 +79,7 @@ const updatePlayer = async (req, res, next) => {
             return next(createError(400, "Invalid ID."));
         }
 
-        const player = await playersModel.findByIdAndUpdate(playerId,playerInfo);
+        const player = await playersModel.findByIdAndUpdate(playerId, playerInfo);
 
         res.json({
             message: playerUpdateMsg(playerInfo.name)
@@ -87,7 +90,9 @@ const updatePlayer = async (req, res, next) => {
     }
 };
 
+// Delete players controllers
 const deletePLayer = async (req, res, next) => {
+    //#swagger.tags=['players']
     try{
         const playerId = req.params.id;
         const playerName = await playersModel.findById(playerId)
@@ -96,7 +101,7 @@ const deletePLayer = async (req, res, next) => {
             return next(createError(400, "Invalid ID"));
         }
 
-        const player = await playersModel.findByIdAndDelete(playerId);
+        const pluayer = await playersModel.findByIdAndDelete(playerId);
 
         res.json({
             message: playerDelMsg(playerName.name)
@@ -105,7 +110,6 @@ const deletePLayer = async (req, res, next) => {
         next(err);
     }
 };
-
 
 module.exports = {
     getAllPlayers,

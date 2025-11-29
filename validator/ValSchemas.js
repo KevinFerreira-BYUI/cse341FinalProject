@@ -18,7 +18,7 @@ const teamsSchema = Joi.object({
     club_name: Joi.string().max(15).required(),
     country: Joi.string().max(25).required(),
     city: Joi.string().max(30).required(),
-    foundation_year: Joi.number().max(10).min(8).required(),
+    foundation_year: Joi.number().min(1900).required(),
     stadium_name: Joi.string().max(35).min(10).required(),
     team_badge: Joi.string().uri().required()
 });

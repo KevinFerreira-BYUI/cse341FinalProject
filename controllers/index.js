@@ -1,5 +1,6 @@
 
 const sendIndex = (req, res, next) => {
+    //#swagger.tags=['Welcome to FootBall Scouts API']
     res.send(`
         <section>
             <div>

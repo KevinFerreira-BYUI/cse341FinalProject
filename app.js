@@ -20,10 +20,14 @@ app.use(corsConfigs);
 // Routes Requirements
 const indexRoute = require("./routes/index");
 const playersRoute = require("./routes/players");
+const teamsRoute = require("./routes/teams");
+const swaggerRoute = require("./routes/swagger");
 
 // App Routes
 app.use("/", indexRoute);
 app.use("/players", playersRoute);
+app.use("/teams", teamsRoute);
+app.use("/api-docs", swaggerRoute);
 
 // Launch localhost
 app.listen(Port, console.log(`runnig at localhost:${Port}`))
