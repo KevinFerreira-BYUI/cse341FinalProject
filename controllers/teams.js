@@ -10,6 +10,7 @@ const getAllTeams = async (req, res, next) => {
         const teams = await teamsModel.find();
 
         res.json(teams);
+        
     } catch(err){
         next(err);
     }
@@ -44,14 +45,12 @@ const createTeam = async (req, res, next) => {
     }
 
     try{
-        // const checkExist = await teamsModel.find({club_name: teamInfo.club_name});
-
-        // if(checkExist){
-        //     return next(createError(400, `${teamInfo.club_name} is already existing on Data Base`));
-        // }
+        const teamsName = await teamsModel.findOne({club_name: teamInfo.club_name});
+        if (teamsName){
+            return next(createError(400, "This team already exists"));
+        };
 
         const postTeam = await teamsModel.create(teamInfo);
-
         res.json({
             message: teamAddedMsg(teamInfo.club_name)
         });
