@@ -1,4 +1,5 @@
 const playersModel = require("../models/players");
+const teamsModel = require("../models/teams");
 const createError = require("http-errors");
 const {playerAddedMsg, playerUpdateMsg, playerDelMsg} = require("../utils/message");
 
@@ -6,7 +7,7 @@ const {playerAddedMsg, playerUpdateMsg, playerDelMsg} = require("../utils/messag
 const getAllPlayers = async (req, res, next) => {
     //#swagger.tags=['players']
     try{
-        const players = await playersModel.find();
+        const players = await playersModel.find().populate("club");
 
         res.json(players);    
     } catch(err){
@@ -46,6 +47,12 @@ const addPlater = async (req, res, next) => {
     }
 
     try{
+        const findClub = await teamsModel.findOne({club_name: playerInfo.club});
+        if(!findClub){
+            next(createError(404, "Club not found in data base."));
+        }
+        
+        playerInfo.club = findClub._id;
         const player = await playersModel.create(playerInfo);
 
         res.json({

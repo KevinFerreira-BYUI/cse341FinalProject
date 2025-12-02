@@ -6,7 +6,10 @@ const playerSchema = new mongoose.Schema(
         age: Number,
         nationality: String,
         position: String,
-        club: String,
+        club: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "teams"
+        },
         career_goals: Number,
         height: Number,
         dominant_foot: String,
