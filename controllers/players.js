@@ -25,7 +25,7 @@ const getPlayerById = async (req, res, next) => {
             return next(createError(404, "Player not found."));
         }
 
-        res.json(player);
+        res.status(200).json(player);
     } catch(err){
         next(err);
     }
