@@ -9,7 +9,7 @@ const getAllPlayers = async (req, res, next) => {
     try{
         const players = await playersModel.find().populate("club");
 
-        res.json(players);    
+        res.status(200).json(players);
     } catch(err){
         return next(err);
     }

@@ -11,8 +11,32 @@ function mockRes(){
     return res;
 };
 
-test("Testing /GET route from players", async () => {
-    // 69285af09cc88dc1334c6857
+// Get all players
+test("Testing /GET from players", async() => {
+  const testPlayer = {
+        name: "",
+        age: "",
+        nationality: "",
+        club: "",
+        career_goals: "",
+        height: "",
+        dominant_foot: "",
+        image: ""
+    };
+    
+    mockingoose(players).toReturn(testPlayer, "find");
+
+    const req = {};
+    const res = mockRes();
+
+    await playersController.getAllPlayers(req, res);
+
+    expect(res.statusCode).toBe(200);
+});
+
+
+// Get By ID test
+test("Testing /GET by his ID route from players", async () => {
     const playerId = "69285af09cc88dc1334c6857";
     const testPlayer = {
         _id: playerId,
