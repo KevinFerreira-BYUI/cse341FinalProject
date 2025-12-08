@@ -13,7 +13,7 @@ const playerSchema = Joi.object({
    image: Joi.string().uri().required()
 });
 
-// Schema to validade teams
+// Schema to validate teams
 const teamsSchema = Joi.object({
     club_name: Joi.string().max(15).required(),
     country: Joi.string().max(25).required(),
@@ -23,9 +23,19 @@ const teamsSchema = Joi.object({
     team_badge: Joi.string().uri().required()
 });
 
+// Schema to validate matches
+const matchesSchema = Joi.object({
+    team_a: Joi.string().required(),
+    team_b: Joi.string().required(),
+    date: Joi.string().required(),
+    local: Joi.string().required(),
+    score: Joi.string().required()
+});
+
 
 module.exports = {
     playerSchema,
-    teamsSchema
+    teamsSchema,
+    matchesSchema
 }
 

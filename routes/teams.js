@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const teamsController = require("../controllers/teams");
 const {validadeTeam} = require("../validator/validator");
+const {isAuthenticated} = require("../middlewares/auth");
 
 // Get 
 // #swagger.tags = ["teams"]
@@ -13,17 +14,17 @@ router.get("/:id", teamsController.getTeamById);
 // Post
 // #swagger.tags = ["teams"]
 // #swagger.path = "/teams"
-router.post("/", validadeTeam, teamsController.createTeam);
+router.post("/", isAuthenticated, validadeTeam, teamsController.createTeam);
 
 // Put
 // #swagger.tags = ["teams"]
 // #swagger.path = "/teams/{id}"
-router.put("/:id", validadeTeam, teamsController.updateTeam);
+router.put("/:id", isAuthenticated, validadeTeam, teamsController.updateTeam);
 
 // Delete
 // #swagger.tags = ["teams"]
 // #swagger.path = "/teams/{id}"
-router.delete("/:id", teamsController.deleteTeam);
+router.delete("/:id", isAuthenticated, teamsController.deleteTeam);
 
 
 module.exports = router;

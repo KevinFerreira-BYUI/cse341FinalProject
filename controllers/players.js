@@ -108,7 +108,7 @@ const deletePLayer = async (req, res, next) => {
             return next(createError(400, "Invalid ID"));
         }
 
-        const pluayer = await playersModel.findByIdAndDelete(playerId);
+        const player = await playersModel.findByIdAndDelete(playerId);
 
         res.json({
             message: playerDelMsg(playerName.name)

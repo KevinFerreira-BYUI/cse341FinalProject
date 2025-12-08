@@ -5,6 +5,7 @@ const sendIndex = (req, res, next) => {
         <section>
             <div>
                 <h1>Welcome to FootBall Scouts API</h1>
+                <h2>${req.session.user ? `Welcome ${req.session.user.displayName}!!` : " "}</h2>
             </div>
 
             <div>
@@ -15,8 +16,8 @@ const sendIndex = (req, res, next) => {
                 <p><a href="/api-docs">Api Docs here</p>
                 <ul>
                     <li><a href="/players">Players Route</li>
-                    <li><a href="/teams">Teams Route        </li>
-                    <li><a href="#">3</li>
+                    <li><a href="/teams">Teams Route</li>
+                    <li><a href="/matches">Matches</li>
                     <li><a href="#">4</li>
                 </ul>
             <div>
