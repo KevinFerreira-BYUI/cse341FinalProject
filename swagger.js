@@ -12,26 +12,6 @@ const doc = {
     host: env === "production" ? "cse341finalproject-sfnr.onrender.com" : "localhost:8080",
     schemes: env === "production" ? ["https"] : ["http"],
     basepath: "/",
-    
-    // components: {
-    //     securitySchemes: {
-    //         githubOAuth: {
-    //             type: "oauth2",
-    //             description: "Autenticação via GitHub OAuth",
-    //             flows: {
-    //                 authorizationCode: {
-    //                     authorizationUrl: "https://github.com/login/oauth/authorize",
-    //                     tokenUrl: "https://github.com/login/oauth/access_token",
-    //                     scopes: {
-    //                         "user:email": "Permite obter email do usuário"
-    //                     }
-    //                 }
-    //             }
-    //         }
-    //     }
-    // },
-
-    // security: [{ githubOAuth: [] }]
 };
 
 const outputFile = "./swagger.json";

@@ -18,7 +18,7 @@ const sendIndex = (req, res, next) => {
                     <li><a href="/players">Players Route</li>
                     <li><a href="/teams">Teams Route</li>
                     <li><a href="/matches">Matches</li>
-                    <li><a href="#">4</li>
+                    <li><a href="/stats">Stats</li>
                 </ul>
             <div>
         </section>

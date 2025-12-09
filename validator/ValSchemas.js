@@ -29,6 +29,7 @@ const matchesSchema = Joi.object({
     team_b: Joi.string().required(),
     date: Joi.string().required(),
     local: Joi.string().required(),
+    competition: Joi.string().required(),
     score: Joi.string().required()
 });
 

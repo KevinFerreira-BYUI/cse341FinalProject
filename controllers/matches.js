@@ -86,9 +86,15 @@ const updateMatch = async (req, res, next) => {
             return next(createError(400, "Invalid ID."));
         }
 
-        const teamA = await teamsModel.findById(matchInfo.team_a);
-        const teamB = await teamsModel.findById(matchInfo.team_b);
+        const teamA = await teamsModel.findOne({club_name: matchInfo.team_a});
+        const teamB = await teamsModel.findOne({club_name: matchInfo.team_b});
 
+        if(!teamA || !teamB){
+            return next(createError(404, "Team A or B not found"));
+        }
+
+        matchInfo.team_a = teamA._id;
+        matchInfo.team_b = teamB._id;
         const updateMatch = await matchesModel.findByIdAndUpdate(matchId, matchInfo);
         
         res.json({
