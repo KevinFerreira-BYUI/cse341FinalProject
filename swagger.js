@@ -11,7 +11,7 @@ const doc = {
 
     host: env === "production" ? "cse341finalproject-sfnr.onrender.com" : "localhost:8080",
     schemes: env === "production" ? ["https"] : ["http"],
-    basepath: "/"  
+    basepath: "/",
 };
 
 const outputFile = "./swagger.json";

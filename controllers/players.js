@@ -1,4 +1,5 @@
 const playersModel = require("../models/players");
+const teamsModel = require("../models/teams");
 const createError = require("http-errors");
 const {playerAddedMsg, playerUpdateMsg, playerDelMsg} = require("../utils/message");
 
@@ -6,9 +7,9 @@ const {playerAddedMsg, playerUpdateMsg, playerDelMsg} = require("../utils/messag
 const getAllPlayers = async (req, res, next) => {
     //#swagger.tags=['players']
     try{
-        const players = await playersModel.find();
+        const players = await playersModel.find().populate("club", "club_name");
 
-        res.json(players);    
+        res.status(200).json(players);
     } catch(err){
         return next(err);
     }
@@ -18,13 +19,13 @@ const getPlayerById = async (req, res, next) => {
     //#swagger.tags=['players']
     try{
         const playerId = req.params.id;
-        const player = await playersModel.findById(playerId);
+        const player = await playersModel.findById(playerId).populate("club", "club_name");
 
         if(!player){
             return next(createError(404, "Player not found."));
         }
 
-        res.json(player);
+        res.status(200).json(player);
     } catch(err){
         next(err);
     }
@@ -46,6 +47,12 @@ const addPlater = async (req, res, next) => {
     }
 
     try{
+        const findClub = await teamsModel.findOne({club_name: playerInfo.club});
+        if(!findClub){
+            next(createError(404, "Club not found in data base."));
+        }
+        
+        playerInfo.club = findClub._id;
         const player = await playersModel.create(playerInfo);
 
         res.json({
@@ -76,9 +83,15 @@ const updatePlayer = async (req, res, next) => {
         const playerId = req.params.id;
         const findPlayerId = await playersModel.findById(playerId);
         if (!findPlayerId){
-            return next(createError(400, "Invalid ID."));
+            return next(createError(404, "Player not found in data base."));
         }
 
+        const findClub = await teamsModel.findOne({club_name: playerInfo.club});
+        if(!findClub){
+            return next(createError(404, "Club not found in data base"));
+        }
+
+        playerInfo.club = findClub._id;
         const player = await playersModel.findByIdAndUpdate(playerId, playerInfo);
 
         res.json({
@@ -101,7 +114,7 @@ const deletePLayer = async (req, res, next) => {
             return next(createError(400, "Invalid ID"));
         }
 
-        const pluayer = await playersModel.findByIdAndDelete(playerId);
+        const player = await playersModel.findByIdAndDelete(playerId);
 
         res.json({
             message: playerDelMsg(playerName.name)

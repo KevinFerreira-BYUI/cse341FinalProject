@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon app.js",
-    "swagger" : "node swagger.js",
-    "start": "node swagger.js && node app.js"
+    "swagger": "node swagger.js",
+    "start": "node swagger.js && node app.js",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -28,11 +28,15 @@
     "express": "^5.1.0",
     "express-session": "^1.18.2",
     "http-errors": "^2.0.1",
+    "mockingoose": "^2.16.2",
     "mongoose": "^9.0.0",
     "nodemon": "^3.1.11",
     "passport": "^0.7.0",
     "passport-github2": "^0.1.12",
     "swagger-autogen": "^2.23.7",
     "swagger-ui-express": "^5.0.1"
+  },
+  "devDependencies": {
+    "jest": "^30.2.0"
   }
 }

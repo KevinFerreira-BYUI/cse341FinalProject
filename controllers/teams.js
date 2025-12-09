@@ -9,7 +9,7 @@ const getAllTeams = async (req, res, next) => {
     try{
         const teams = await teamsModel.find();
 
-        res.json(teams);
+        res.status(200).json(teams);
         
     } catch(err){
         next(err);
@@ -26,7 +26,7 @@ const getTeamById = async (req, res, next) => {
             return next(createError(404, "Team not found."));
         }
 
-        res.json(team)
+        res.status(200).json(team);
     } catch(err){
         next(err);
     }
