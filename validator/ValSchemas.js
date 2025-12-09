@@ -32,10 +32,25 @@ const matchesSchema = Joi.object({
     score: Joi.string().required()
 });
 
+// Schema to validate stats
+const statsSchema = Joi.object({
+    player: Joi.string().required(),
+    match: Joi.string().required(),
+    minutes_played: Joi.number().required(),
+    shots: Joi.number().required(),
+    assists: Joi.number().required(),
+    accurate_passes: Joi.number().required(),
+    yellow_cards: Joi.number().required(),
+    red_cards: Joi.number().required(),
+    rating: Joi.number().required(),
+    record_date: Joi.string().required()
+});
+
 
 module.exports = {
     playerSchema,
     teamsSchema,
-    matchesSchema
+    matchesSchema,
+    statsSchema
 }
 

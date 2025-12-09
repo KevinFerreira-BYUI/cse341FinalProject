@@ -42,6 +42,7 @@ const indexRoute = require("./routes/index");
 const playersRoute = require("./routes/players");
 const teamsRoute = require("./routes/teams");
 const matchRoute = require("./routes/matches");
+const statsRoute = require("./routes/stats");
 const loginRoute = require("./routes/login");
 const logoutRoute = require("./routes/logout");
 const authRoute = require("./routes/auth");
@@ -54,6 +55,7 @@ app.use("/logout", logoutRoute);
 app.use("/players", playersRoute);
 app.use("/teams", teamsRoute);
 app.use("/matches", matchRoute);
+app.use("/stats", statsRoute);
 app.use("/api-docs", swaggerRoute);
 
 // Authentication Route

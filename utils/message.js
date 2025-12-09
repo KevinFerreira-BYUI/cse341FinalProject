@@ -42,6 +42,12 @@ const matchUpdatedMsg = (teamA, teamB) => {
     return message;
 };
 
+// EndPoints Messages to the user about STATS
+const statsAddedMsg = (name) => {
+    const message = `The Stats about ${name} for this match has been created`;
+    return message;
+};
+
 
 
 
@@ -53,5 +59,6 @@ module.exports = {
     teamUpdateMsg,
     teamDelMsg,
     matchAddedMsg,
-    matchUpdatedMsg
+    matchUpdatedMsg,
+    statsAddedMsg
 }
